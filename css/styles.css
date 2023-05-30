@@ -1,0 +1,57 @@
+:root {
+  --background: #333333;
+  --navbarLink: #e4e4e4;
+  --navbarLinkHover: #b4b4b4;
+  --noteContentFont: #e4e4e4;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  margin: 0;
+}
+
+.navbar {
+  overflow: hidden;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: var(--navbarLink);
+  text-align: center;
+  padding: 4px 6px;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+.navbar a:hover {
+  text-decoration: underline;
+  color: #b4b4b4;
+}
+
+.main {
+  position: relative;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.notes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.note {
+  padding: 1px;
+  margin: 10px;
+  width: 240px;
+  border: solid 1px #b4b4b4;
+  border-radius: 5px;
+  min-height: 76px;
+}
+.noteContent {
+  margin: 16px 12px;
+  color: var(--noteContentFont);
+}
