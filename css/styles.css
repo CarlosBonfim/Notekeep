@@ -1,3 +1,6 @@
+*{
+  border: solid 1px red;
+}
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
@@ -34,14 +37,16 @@ body {
   padding-top: 100px;
   display: flex;
   justify-content: center;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 .notes {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-start;  */
+  column-count: 3;
+  column-gap: 20px;
 }
 .note {
   padding: 1px;
@@ -50,6 +55,7 @@ body {
   border: solid 1px #b4b4b4;
   border-radius: 5px;
   min-height: 76px;
+  break-inside: avoid;
 }
 .noteContent {
   margin: 16px 12px;
