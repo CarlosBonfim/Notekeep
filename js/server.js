@@ -1,15 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const {db, Note} = require('./database')
+const { db, Note } = require("./database");
 
 app.get("/notekeep", (req, res) => {
-  console.log('oi')
   Note.find()
     .then((notes) => res.send(notes))
-    .catch(err => res.status(500).send(err))
+    .catch((err) => res.status(500).send(err));
 });
 
 app.listen(port, () => {
-  console.log(`Executando na porta ${port}`)
-})
+  console.log(`Executando na porta ${port}`);
+});
