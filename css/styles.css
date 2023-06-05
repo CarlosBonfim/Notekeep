@@ -1,6 +1,6 @@
-* {
+/* * {
   border: solid 1px red;
-}
+} */
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
@@ -41,11 +41,7 @@ body {
   padding-right: 20px;
 }
 .notes {
-  /* display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;  */
-  column-count: 3;
+  column-count: 5;
   column-gap: 20px;
 }
 .note {
@@ -56,8 +52,40 @@ body {
   border-radius: 5px;
   min-height: 76px;
   break-inside: avoid;
+  word-wrap: break-word;
 }
 .noteContent {
   margin: 16px 12px;
   color: var(--noteContentFont);
+}
+.noteText{
+  word-wrap: break-word;
+}
+
+@media (max-width: 1500px){
+  .notes{
+    column-count: 4;
+  }
+}
+@media (max-width: 1100px){
+  .notes{
+    column-count: 3;
+  }
+}
+@media (max-width: 875px){
+  .notes{
+    column-count: 2;
+  }
+}
+@media (max-width: 565px){
+  .notes{
+    column-count: 1;
+
+  }
+}
+@media (max-width: 290px){
+  .note{
+    width: 66vw;
+    overflow: hidden;
+  }
 }
