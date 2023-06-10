@@ -1,6 +1,6 @@
-/* * {
+* {
   border: solid 1px red;
-} */
+}
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
@@ -31,37 +31,66 @@ body {
   text-decoration: underline;
   color: #b4b4b4;
 }
+.main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-.main {
+.noteShowForm{
+  border: solid 1px rgb(30, 248, 1);
+  margin: 10px;
+  /* height: 6vh; */
+  margin-top: 5vh;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noteForm{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.noteMain{
   position: relative;
-  padding-top: 100px;
+  padding-top: 10vh;
   display: flex;
   justify-content: center;
   padding-left: 20px;
   padding-right: 20px;
 }
+
 .notes {
   column-count: 5;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 .note {
   padding: 1px;
-  margin: 10px;
+  margin: 5px;
   width: 240px;
   border: solid 1px #b4b4b4;
   border-radius: 5px;
   min-height: 76px;
   break-inside: avoid;
   word-wrap: break-word;
+  margin-top: 0;
 }
 .noteContent {
   margin: 16px 12px;
   color: var(--noteContentFont);
-}
-.noteText{
+} 
+.noteShowText{
   word-wrap: break-word;
 }
-
+.noteShowTitle{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 @media (max-width: 1500px){
   .notes{
     column-count: 4;

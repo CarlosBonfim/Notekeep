@@ -9,6 +9,7 @@ const Schema = mongoose.Schema;
 const noteKeepSchema = new Schema({
   userName: String,
   noteText: String,
+  noteTitle: String,
   noteEdition: String,
 });
 

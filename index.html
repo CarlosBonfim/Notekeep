@@ -7,52 +7,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
   <script src="./js/index.js" type="text/javascript" defer></script>
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
   <title>Notekeep</title>
 </head>
 
 <body>
   <div class="navbar">
-    <a href="#home">Nodekeep</a>
+    <a href="#home">Notekeep</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
   </div>
 
   <main class="main">
-    <div class="notes" id="notes">
-      <div class="note">
-        <div class="noteContent">
-          <p class="nodeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est fugit recusandae repellendus
-            ad eius explicabo porro blanditiis atque veniam laborum! Praesentium dignissimos omnis voluptas. Quasi modi
-            voluptates consectetur placeat. Praesentium?</p>
-        </div>
-      </div>
-      <div class="note">
-        <div class="noteContent">
-          <p class="nodeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est fugit recusandae repellendus
-            ad eius explicabo porro blanditiis atque veniam laborum! Praesentium dignissimos omnis voluptas. Quasi modi
-            voluptates consectetur placeat. Praesentium?</p>
-        </div>
-      </div>
-      <div class="note">
-        <div class="noteContent">
-          <p class="nodeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est fugit recusandae repellendus
-            ad eius explicabo porro blanditiis atque veniam laborum! Praesentium dignissimos omnis voluptas. Quasi modi
-            voluptates consectetur placeat. Praesentium?Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-            praesentium saepe blanditiis, temporibus, exercitationem officiis soluta ratione doloremque explicabo at
-            veritatis nesciunt quasi similique nulla. Consectetur nobis non maiores iure!</p>
-        </div>
-      </div>
-      <div class="note">
-        <div class="noteContent">
-          <p class="nodeText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est fugit recusandae repellendus
-            ad eius explicabo porro blanditiis atque veniam laborum! Praesentium dignissimos omnis voluptas. Quasi modi
-            voluptates consectetur placeat. Praesentium?Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit
-            praesentium saepe blanditiis, temporibus, exercitationem officiis soluta ratione doloremque explicabo at
-            veritatis nesciunt quasi similique nulla. Consectetur nobis non maiores iure!</p>
-        </div>
+    <div class="noteShowForm">
+      <!-- <form class="noteForm" id="noteFormId" onsubmit="event.preventDefault(); submitFormNote()"> -->
+      <form class="noteForm" id="noteFormId">
+        <input type="text" id="noteTitle" name="noteTitle" placeholder="Titulo"><br>
+        <input type="text" id="noteText" name="noteText" placeholder="Nota"><br>
+        <input type="submit" value="Salvar">
+        <!-- <input type="submit" value="Salvar" onclick="submitFormNote()"> -->
+      </form>
+    </div>
+
+    <div class="noteMain">
+      <div class="notes">
+        
       </div>
     </div>
   </main>
+
+  
 </body>
 
 </html>
