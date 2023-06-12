@@ -7,7 +7,8 @@ fetch(url)
     data.forEach((element) => {
       const note = document.createElement("div");
       note.classList.add("note");
-      note.innerHTML = `<div class="noteContent"><p class="nodeText">${element.noteText}</p></div>`;
+      const id = element._id
+      note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
       notes.appendChild(note);
     });
   })
@@ -44,4 +45,8 @@ function submitFormNote() {
         `ERRO, NÃO FOI POSSIVEL ENVIAR OS DADOS PARA O SERVIDOR: ${err}`
       )
     );
+}
+
+function selectNote(id){
+  console.log(id)
 }
