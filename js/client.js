@@ -14,16 +14,9 @@ fetch(url)
   })
   .catch((err) => console.log(`Caiu no catch ${err}`));
 
-const formNote = document.getElementById("noteFormId");
-formNote.addEventListener("submit", (event) => {
-  event.preventDefault();
-  submitFormNote();
-  formNote.reset();
-});
-
 function submitFormNote() {
   console.log("entrou no submit form note");
-  // const formNote = document.getElementById("noteFormId");
+  const formNote = document.getElementById("noteFormId");
   const formData = new FormData(formNote);
   const data = {};
   for (let [key, value] of formData.entries()) {
@@ -47,6 +40,3 @@ function submitFormNote() {
     );
 }
 
-function selectNote(id){
-  console.log(id)
-}

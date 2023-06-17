@@ -1,11 +1,12 @@
 * {
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
   --navbarLinkHover: #b4b4b4;
   --noteContentFont: #e4e4e4;
+  --noteBorder: #b4b4b4;
 }
 
 body {
@@ -39,7 +40,7 @@ body {
 }
 
 .noteShowForm{
-  border: solid 1px rgb(30, 248, 1);
+  /* border: solid 1px rgb(30, 248, 1); */
   margin: 10px;
   /* height: 6vh; */
   margin-top: 5vh;
@@ -49,12 +50,75 @@ body {
   align-items: center;
 }
 
-.noteForm{
+.noteForm {
   display: flex;
   flex-direction: column;
   width: 100%;
+  border: solid 2px gray;
+  border-radius: 3px;
 }
 
+
+.noteForm>#noteTitle,
+.noteForm>#noteSubmitButton,
+.noteForm>#noteText {
+  background-color: var(--background);
+  color: var(--noteContentFont);
+  border: none;
+  outline: none;
+}
+
+.noteForm>#noteTitle,
+.noteForm>#noteText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.noteForm>#noteTitle::placeholder,
+.noteForm>#noteText::placeholder {
+  font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.noteForm>#noteTitle {
+  border-bottom: solid 1px var(--noteBorder);
+  height: 4vh;
+}
+
+.noteForm>#noteText {
+  height: 5vh;
+  resize: none;
+
+}
+
+.noteForm>#noteSubmitButton {
+  border: solid 1px var(--noteBorder);
+  border-radius: 5px;
+  width: 15%;
+  padding: 5px;
+  margin: 10px;
+  margin-left: auto;
+}
+
+.noteForm>#noteSubmitButton:hover {
+  background-color: #3b3b3b;
+}
+
+.noteForm>#noteSubmitButton:active {
+  background-color: #4d4c4c;
+}
+
+.noteForm>#noteText:focus {
+  height: 5vh;
+  overflow: hidden;
+  overflow-wrap: break-word;
+
+}
+
+.noteForm>#noteTitle,
+.noteForm>#noteSubmitButton {
+  display: none;
+}
 
 .noteMain{
   position: relative;
@@ -73,7 +137,7 @@ body {
   padding: 1px;
   margin: 5px;
   width: 240px;
-  border: solid 1px #b4b4b4;
+  border: solid 1px var(--noteBorder);
   border-radius: 5px;
   min-height: 76px;
   break-inside: avoid;
