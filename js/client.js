@@ -40,3 +40,37 @@ function submitFormNote() {
     );
 }
 
+function getElements(id) {
+  console.log("oi");
+  fetch(`${url}/${id}`)
+    .then((data) => data.json())
+    .then((values) => {
+      console.log("acima do showNOte");
+      const showNote = document.createElement("div");
+      showNote.classList.add("showNote");
+      // showNote.setAttribute("tabindex", -1);
+      showNote.innerHTML = `<form class="selectedNote">
+      <input type="hidden" name="id" value="${values._id}" >
+      <textarea type="text" id="openTitle" name="noteTitle">${values.noteTitle}</textarea>
+      <textarea type="text" id="openNote" name="noteText">${values.noteText}</textarea>
+      <div class="selectedNoteButtons">
+        <input type="submit" id="editSubmitButton" value="Salvar">
+        <button class="deleteNoteButton">Excluir</button>
+      </div>
+      </form>`;
+      main.appendChild(showNote);
+      const openNote = showNote.querySelector('#openNote')
+      const openTitle = showNote.querySelector('#openTitle')
+      const editSubmitButton = showNote.querySelector('#editSubmitButton')
+      const deleteNoteButton = showNote.querySelector('.deleteNoteButton')
+      openNote.focus()
+      showNote.addEventListener("blur", (event) => {
+        console.log("teste blut");
+        setTimeout(() => {
+          if(document.activeElement !== openTitle && document.activeElement !== openNote && document.activeElement !== editSubmitButton && document.activeElement !== deleteNoteButton){
+            showNote.innerHTML = "";
+         }
+        }, 50);
+      },true);
+    });
+}

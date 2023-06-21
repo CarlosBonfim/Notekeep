@@ -14,6 +14,13 @@ app.get("/notekeep", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+app.get('/notekeep/:id', (req,res) => {
+  const id = req.params.id;
+  Note.findById(id)
+    .then(notes =>res.send(notes))
+    .catch(err => res.send(err))
+})
+
 app.post("/notekeep", (req, res) => {
   const noteTitle = req.body.noteTitle;
   const noteText = req.body.noteText;
@@ -21,7 +28,8 @@ app.post("/notekeep", (req, res) => {
     .then((result) => res.status(201).send(result))
     .catch((err) => res.status(500).send(err));
 });
-  
+
+
 app.listen(port, () => {
   console.log(`Executando na porta ${port}`);
 });

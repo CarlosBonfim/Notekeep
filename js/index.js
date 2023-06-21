@@ -2,6 +2,7 @@ const formNote = document.getElementById("noteFormId");
 const noteText = document.querySelector("#noteText");
 const noteTitle = document.querySelector("#noteTitle");
 const noteSubmitButton = document.querySelector("#noteSubmitButton");
+const main = document.querySelector(".main")
 //o envio dos dados do formulario
 formNote.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -9,9 +10,14 @@ formNote.addEventListener("submit", (event) => {
   formNote.reset();
 });
 
-// function selectNote(id) {
-//   console.log(id);
-// }
+function selectNote(id) {
+  console.log(id)
+  getElements(id)
+
+}
+
+
+
 
 function blurMainForm() {
   noteTitle.style.display = "none";

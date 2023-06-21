@@ -1,12 +1,15 @@
 * {
   /* border: solid 1px red; */
 }
+
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
   --navbarLinkHover: #b4b4b4;
   --noteContentFont: #e4e4e4;
-  --noteBorder: #b4b4b4;
+  --noteBorder: #b4b4b4; 
+  --submitButtonHover: #3b3b3b;
+  --submitButtonActive: #4d4c4c;
 }
 
 body {
@@ -28,18 +31,20 @@ body {
   text-decoration: none;
   font-size: 1.1em;
 }
+
 .navbar a:hover {
   text-decoration: underline;
   color: #b4b4b4;
 }
-.main{
+
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.noteShowForm{
+.noteShowForm {
   /* border: solid 1px rgb(30, 248, 1); */
   margin: 10px;
   /* height: 6vh; */
@@ -101,11 +106,11 @@ body {
 }
 
 .noteForm>#noteSubmitButton:hover {
-  background-color: #3b3b3b;
+  background-color: var(--submitButtonHover);
 }
 
 .noteForm>#noteSubmitButton:active {
-  background-color: #4d4c4c;
+  background-color: var(--submitButtonActive);
 }
 
 .noteForm>#noteText:focus {
@@ -120,7 +125,7 @@ body {
   display: none;
 }
 
-.noteMain{
+.noteMain {
   position: relative;
   padding-top: 10vh;
   display: flex;
@@ -133,6 +138,7 @@ body {
   column-count: 5;
   column-gap: 10px;
 }
+
 .note {
   padding: 1px;
   margin: 5px;
@@ -144,40 +150,123 @@ body {
   word-wrap: break-word;
   margin-top: 0;
 }
+
 .noteContent {
   margin: 16px 12px;
   color: var(--noteContentFont);
-} 
-.noteShowText{
+}
+
+.noteShowText {
   word-wrap: break-word;
 }
-.noteShowTitle{
+
+.noteShowTitle {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-@media (max-width: 1500px){
-  .notes{
+
+.showNote {
+  background-color: var(--background);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  box-shadow: #b4b4b4;
+
+}
+
+.selectedNote {
+  border: solid 1px var(--noteBorder);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+#openTitle, #openNote, #editSubmitButton, #deleteNoteButton{
+  background-color: var(--background);
+  color: var(--noteContentFont);
+  font-family: Arial, Helvetica, sans-serif;
+  border: none;
+}
+#openTitle, #openNote, #editSubmitButton, #deleteNoteButton:focus{
+  outline: none;
+}
+#openTitle{
+  height: 5vh;
+  border-bottom: solid 1px var(--noteBorder);
+  resize: none;
+}
+
+#openNote{
+  height: 50vh;
+  padding-top: 10px;
+  resize: none;
+}
+
+.selectedNoteButtons{
+  padding: 10px;
+  display: flex;
+  margin-left: auto;
+}
+.selectedNoteButtons > #editSubmitButton, 
+.selectedNoteButtons > .deleteNoteButton{
+  margin-left: 10px;
+}
+.selectedNoteButtons > #editSubmitButton{
+  border: solid 1px var(--navbarLinkHover);
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+}
+.selectedNoteButtons > #editSubmitButton:hover{
+  background-color: var(--submitButtonHover);
+}
+.selectedNoteButtons > #editSubmitButton:active{
+  background-color: var(--submitButtonActive);
+}
+.selectedNoteButtons > .deleteNoteButton{
+  background-color: rgb(161, 16, 16);
+  width: 70px;
+  color: var(--noteContentFont);
+  border-radius: 3px;
+  border: none;
+}
+.selectedNoteButtons > .deleteNoteButton:hover{
+  background-color: rgb(185, 1, 1);
+}
+.selectedNoteButtons > .deleteNoteButton:active{
+  background-color: red;
+}
+
+@media (max-width: 1500px) {
+  .notes {
     column-count: 4;
   }
 }
-@media (max-width: 1100px){
-  .notes{
+
+@media (max-width: 1100px) {
+  .notes {
     column-count: 3;
   }
 }
-@media (max-width: 875px){
-  .notes{
+
+@media (max-width: 875px) {
+  .notes {
     column-count: 2;
   }
 }
-@media (max-width: 565px){
-  .notes{
+
+@media (max-width: 565px) {
+  .notes {
     column-count: 1;
 
   }
 }
-@media (max-width: 290px){
-  .note{
+
+@media (max-width: 290px) {
+  .note {
     width: 66vw;
     overflow: hidden;
   }
