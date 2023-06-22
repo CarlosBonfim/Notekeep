@@ -29,6 +29,14 @@ app.post("/notekeep", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
+app.put('/notekeep', (req,res) => {
+  const noteTitle = req.body.noteTitle;
+  const noteText = req.body.noteText;
+  const _id = req.body.id
+  Note.findByIdAndUpdate(_id, {noteTitle: noteTitle, noteText: noteText})
+    .then(result => res.status(201).send(result))
+    .catch(err => res.status(500).send(err))
+})
 
 app.listen(port, () => {
   console.log(`Executando na porta ${port}`);

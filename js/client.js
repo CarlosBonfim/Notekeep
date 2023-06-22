@@ -72,5 +72,31 @@ function getElements(id) {
          }
         }, 50);
       },true);
+      const form = document.querySelector('form')
+      form.addEventListener('submit', submitEdit())
     });
+}
+
+function submitEdit(){
+  const selectedForm = document.querySelectorAll('.selectedNote')
+  selectedForm.forEach(element => {
+    element.addEventListener('submit', e => {
+      e.preventDefault()
+      let formData = new FormData(element)
+      let data = {}
+      for( let [key,value] of formData.entries()){
+        data[key] = value;
+      }
+      console.log(data)
+      fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(() => location.reload())
+        .catch(console.log('não foi'))
+    })
+
+  }); 
 }

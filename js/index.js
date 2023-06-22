@@ -16,9 +16,6 @@ function selectNote(id) {
 
 }
 
-
-
-
 function blurMainForm() {
   noteTitle.style.display = "none";
   noteSubmitButton.style.display = "none";
