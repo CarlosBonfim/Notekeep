@@ -55,7 +55,7 @@ function getElements(id) {
       <textarea type="text" id="openNote" name="noteText">${values.noteText}</textarea>
       <div class="selectedNoteButtons">
         <input type="submit" id="editSubmitButton" value="Salvar">
-        <button class="deleteNoteButton">Excluir</button>
+        <button type="button" class="deleteNoteButton" onclick="deleteButton('${values._id}')">Excluir</button>
       </div>
       </form>`;
       main.appendChild(showNote);
@@ -67,8 +67,9 @@ function getElements(id) {
       showNote.addEventListener("blur", (event) => {
         console.log("teste blut");
         setTimeout(() => {
-          if(document.activeElement !== openTitle && document.activeElement !== openNote && document.activeElement !== editSubmitButton && document.activeElement !== deleteNoteButton){
-            showNote.innerHTML = "";
+          if(document.activeElement !== openTitle && document.activeElement !== openNote && document.activeElement !== editSubmitButton && document.activeElement !== deleteNoteButton && document.activeElement !== showConfirmDelete){
+            // showNote.innerHTML = "";
+            showNote.remove()
          }
         }, 50);
       },true);
@@ -99,4 +100,15 @@ function submitEdit(){
     })
 
   }); 
+}
+
+function deleteNote(id){
+  fetch(url, {
+    method: 'DELETE',
+    body: JSON.stringify({id: id}),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  }).then(() => location.reload())
+    .catch(err => console.log)
 }

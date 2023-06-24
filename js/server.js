@@ -38,6 +38,13 @@ app.put('/notekeep', (req,res) => {
     .catch(err => res.status(500).send(err))
 })
 
+app.delete('/notekeep', (req,res) => {
+  const id = req.body.id;
+  Note.findByIdAndDelete(id)
+    .then(notes => res.status(201).send(notes))
+    .catch(err => res.status(500).send(err))
+})
+
 app.listen(port, () => {
   console.log(`Executando na porta ${port}`);
 });

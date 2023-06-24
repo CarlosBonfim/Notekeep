@@ -11,9 +11,28 @@ formNote.addEventListener("submit", (event) => {
 });
 
 function selectNote(id) {
-  console.log(id)
+  //pendente
   getElements(id)
 
+}
+let showConfirmDelete;//global, eventListener showNote
+function deleteButton(id) {
+  showConfirmDelete = document.createElement("div");
+  showConfirmDelete.classList.add("showConfirmDelete");
+  showConfirmDelete.innerHTML = `<div class="confirmDelete">
+  <p>Voce tem certeza que deseja apagar essa nota ?</p>
+  <button class="confirmDeleteButton" type"button" onclick="deleteNote('${id}')" >Apagar</button></div>`;
+  main.appendChild(showConfirmDelete)
+  const confirmDeleteButton = showConfirmDelete.querySelector(".confirmDeleteButton")
+  showConfirmDelete.setAttribute('tabindex', -1);
+  showConfirmDelete.focus()
+  showConfirmDelete.addEventListener('blur', evento => {
+    setTimeout(() => {
+      if(document.activeElement !== showConfirmDelete && document.activeElement !== confirmDeleteButton ){
+        showConfirmDelete.remove()
+      }
+    }, 50);
+  })
 }
 
 function blurMainForm() {

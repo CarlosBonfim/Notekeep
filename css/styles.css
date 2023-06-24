@@ -1,7 +1,3 @@
-* {
-  /* border: solid 1px red; */
-}
-
 :root {
   --background: #333333;
   --navbarLink: #e4e4e4;
@@ -10,6 +6,9 @@
   --noteBorder: #b4b4b4; 
   --submitButtonHover: #3b3b3b;
   --submitButtonActive: #4d4c4c;
+  --deleteButton: rgb(161, 16, 16);
+  --deleteButtonHover: rgb(185, 1, 1);
+  --deleteButtonActive: red;
 }
 
 body {
@@ -136,13 +135,13 @@ body {
 
 .notes {
   column-count: 5;
-  column-gap: 10px;
+  column-gap: 0;
 }
 
 .note {
   padding: 1px;
   margin: 5px;
-  width: 240px;
+  width: 250px;
   border: solid 1px var(--noteBorder);
   border-radius: 5px;
   min-height: 76px;
@@ -227,18 +226,85 @@ body {
   background-color: var(--submitButtonActive);
 }
 .selectedNoteButtons > .deleteNoteButton{
-  background-color: rgb(161, 16, 16);
+  background-color: var(--deleteButton);
   width: 70px;
   color: var(--noteContentFont);
   border-radius: 3px;
   border: none;
 }
 .selectedNoteButtons > .deleteNoteButton:hover{
-  background-color: rgb(185, 1, 1);
+  background-color: var(--deleteButtonHover);
 }
 .selectedNoteButtons > .deleteNoteButton:active{
-  background-color: red;
+  background-color: var(--deleteButtonActive);
 }
+
+/* lkaçsdjfklçadsjfklçjasdklçfjklçsdaffafdas asdf */
+
+.showConfirmDelete{
+  background-color: var(--background);
+  position: absolute;
+  display: flex;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  box-shadow: #b4b4b4;
+}
+.confirmDelete{
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 15px;
+  color: var(--noteContentFont);
+  border: solid 1px var(--noteBorder);
+  border-radius: 3px;
+}
+
+.confirmDeleteButton{
+  width: 60px;
+  height: 30px;
+  border-radius: 3px;
+  background-color: var(--deleteButton);
+  color: var(--noteContentFont);
+}
+
+.confirmDeleteButton:hover{
+  background-color: var(--deleteButtonHover);
+}
+
+.confirmDeleteButton:active{
+  background-color: var(--deleteButtonActive);
+}
+
+
+
+
+
+
+
+
+/* alkjgklçdsaf klçsda jfklç adsklçf jdasçklfjç */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 1500px) {
   .notes {
