@@ -3,10 +3,10 @@ const app = express();
 const port = 3000;
 const { db, Note } = require("./database");
 const cors = require("cors");
-const bodyparser = require('body-parser')
+const bodyparser = require("body-parser");
 
 app.use(cors());
-app.use(bodyparser.json())
+app.use(bodyparser.json());
 
 app.get("/notekeep", (req, res) => {
   Note.find()
@@ -14,12 +14,12 @@ app.get("/notekeep", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-app.get('/notekeep/:id', (req,res) => {
+app.get("/notekeep/:id", (req, res) => {
   const id = req.params.id;
   Note.findById(id)
-    .then(notes =>res.send(notes))
-    .catch(err => res.send(err))
-})
+    .then((notes) => res.send(notes))
+    .catch((err) => res.send(err));
+});
 
 app.post("/notekeep", (req, res) => {
   const noteTitle = req.body.noteTitle;
@@ -29,21 +29,21 @@ app.post("/notekeep", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-app.put('/notekeep', (req,res) => {
+app.put("/notekeep", (req, res) => {
   const noteTitle = req.body.noteTitle;
   const noteText = req.body.noteText;
-  const _id = req.body.id
-  Note.findByIdAndUpdate(_id, {noteTitle: noteTitle, noteText: noteText})
-    .then(result => res.status(201).send(result))
-    .catch(err => res.status(500).send(err))
-})
+  const _id = req.body.id;
+  Note.findByIdAndUpdate(_id, { noteTitle: noteTitle, noteText: noteText })
+    .then((result) => res.status(201).send(result))
+    .catch((err) => res.status(500).send(err));
+});
 
-app.delete('/notekeep', (req,res) => {
+app.delete("/notekeep", (req, res) => {
   const id = req.body.id;
   Note.findByIdAndDelete(id)
-    .then(notes => res.status(201).send(notes))
-    .catch(err => res.status(500).send(err))
-})
+    .then((notes) => res.status(201).send(notes))
+    .catch((err) => res.status(500).send(err));
+});
 
 app.listen(port, () => {
   console.log(`Executando na porta ${port}`);

@@ -7,7 +7,7 @@ fetch(url)
     data.forEach((element) => {
       const note = document.createElement("div");
       note.classList.add("note");
-      const id = element._id
+      const id = element._id;
       note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
       notes.appendChild(note);
     });
@@ -59,56 +59,67 @@ function getElements(id) {
       </div>
       </form>`;
       main.appendChild(showNote);
-      const openNote = showNote.querySelector('#openNote')
-      const openTitle = showNote.querySelector('#openTitle')
-      const editSubmitButton = showNote.querySelector('#editSubmitButton')
-      const deleteNoteButton = showNote.querySelector('.deleteNoteButton')
-      openNote.focus()
-      showNote.addEventListener("blur", (event) => {
-        console.log("teste blut");
-        setTimeout(() => {
-          if(document.activeElement !== openTitle && document.activeElement !== openNote && document.activeElement !== editSubmitButton && document.activeElement !== deleteNoteButton && document.activeElement !== showConfirmDelete){
-            // showNote.innerHTML = "";
-            showNote.remove()
-         }
-        }, 50);
-      },true);
-      const form = document.querySelector('form')
-      form.addEventListener('submit', submitEdit())
+      const openNote = showNote.querySelector("#openNote");
+      const openTitle = showNote.querySelector("#openTitle");
+      const editSubmitButton = showNote.querySelector("#editSubmitButton");
+      const deleteNoteButton = showNote.querySelector(".deleteNoteButton");
+      openNote.focus();
+      showNote.addEventListener(
+        "blur",
+        (event) => {
+          console.log("teste blut");
+          setTimeout(() => {
+            if (
+              document.activeElement !== openTitle &&
+              document.activeElement !== openNote &&
+              document.activeElement !== editSubmitButton &&
+              document.activeElement !== deleteNoteButton &&
+              document.activeElement !== showConfirmDelete
+            ) {
+              // showNote.innerHTML = "";
+              showNote.remove();
+            }
+          }, 50);
+        },
+        true
+      );
+      const form = document.querySelector("form");
+      form.addEventListener("submit", submitEdit());
     });
 }
 
-function submitEdit(){
-  const selectedForm = document.querySelectorAll('.selectedNote')
-  selectedForm.forEach(element => {
-    element.addEventListener('submit', e => {
-      e.preventDefault()
-      let formData = new FormData(element)
-      let data = {}
-      for( let [key,value] of formData.entries()){
+function submitEdit() {
+  const selectedForm = document.querySelectorAll(".selectedNote");
+  selectedForm.forEach((element) => {
+    element.addEventListener("submit", (e) => {
+      e.preventDefault();
+      let formData = new FormData(element);
+      let data = {};
+      for (let [key, value] of formData.entries()) {
         data[key] = value;
       }
-      console.log(data)
+      console.log(data);
       fetch(url, {
-        method: 'PUT',
+        method: "PUT",
         body: JSON.stringify(data),
         headers: {
-          'Content-type': 'application/json'
-        }
-      }).then(() => location.reload())
-        .catch(console.log('não foi'))
-    })
-
-  }); 
+          "Content-type": "application/json",
+        },
+      })
+        .then(() => location.reload())
+        .catch(console.log("não foi"));
+    });
+  });
 }
 
-function deleteNote(id){
+function deleteNote(id) {
   fetch(url, {
-    method: 'DELETE',
-    body: JSON.stringify({id: id}),
+    method: "DELETE",
+    body: JSON.stringify({ id: id }),
     headers: {
-      'Content-type': 'application/json'
-    }
-  }).then(() => location.reload())
-    .catch(err => console.log)
+      "Content-type": "application/json",
+    },
+  })
+    .then(() => location.reload())
+    .catch((err) => console.log);
 }

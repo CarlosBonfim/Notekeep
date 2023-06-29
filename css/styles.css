@@ -3,7 +3,7 @@
   --navbarLink: #e4e4e4;
   --navbarLinkHover: #b4b4b4;
   --noteContentFont: #e4e4e4;
-  --noteBorder: #b4b4b4; 
+  --noteBorder: #b4b4b4;
   --submitButtonHover: #3b3b3b;
   --submitButtonActive: #4d4c4c;
   --deleteButton: rgb(161, 16, 16);
@@ -183,65 +183,80 @@ body {
   padding: 5px;
 }
 
-#openTitle, #openNote, #editSubmitButton, #deleteNoteButton{
+#openTitle,
+#openNote,
+#editSubmitButton,
+#deleteNoteButton {
   background-color: var(--background);
   color: var(--noteContentFont);
   font-family: Arial, Helvetica, sans-serif;
   border: none;
 }
-#openTitle, #openNote, #editSubmitButton, #deleteNoteButton:focus{
+
+#openTitle,
+#openNote,
+#editSubmitButton,
+#deleteNoteButton:focus {
   outline: none;
 }
-#openTitle{
+
+#openTitle {
   height: 5vh;
   border-bottom: solid 1px var(--noteBorder);
   resize: none;
 }
 
-#openNote{
+#openNote {
   height: 50vh;
   padding-top: 10px;
   resize: none;
 }
 
-.selectedNoteButtons{
+.selectedNoteButtons {
   padding: 10px;
   display: flex;
   margin-left: auto;
 }
-.selectedNoteButtons > #editSubmitButton, 
-.selectedNoteButtons > .deleteNoteButton{
+
+.selectedNoteButtons>#editSubmitButton,
+.selectedNoteButtons>.deleteNoteButton {
   margin-left: 10px;
 }
-.selectedNoteButtons > #editSubmitButton{
+
+.selectedNoteButtons>#editSubmitButton {
   border: solid 1px var(--navbarLinkHover);
   width: 60px;
   height: 30px;
   border-radius: 3px;
 }
-.selectedNoteButtons > #editSubmitButton:hover{
+
+.selectedNoteButtons>#editSubmitButton:hover {
   background-color: var(--submitButtonHover);
 }
-.selectedNoteButtons > #editSubmitButton:active{
+
+.selectedNoteButtons>#editSubmitButton:active {
   background-color: var(--submitButtonActive);
 }
-.selectedNoteButtons > .deleteNoteButton{
+
+.selectedNoteButtons>.deleteNoteButton {
   background-color: var(--deleteButton);
   width: 70px;
   color: var(--noteContentFont);
   border-radius: 3px;
   border: none;
 }
-.selectedNoteButtons > .deleteNoteButton:hover{
+
+.selectedNoteButtons>.deleteNoteButton:hover {
   background-color: var(--deleteButtonHover);
 }
-.selectedNoteButtons > .deleteNoteButton:active{
+
+.selectedNoteButtons>.deleteNoteButton:active {
   background-color: var(--deleteButtonActive);
 }
 
 /* lkaçsdjfklçadsjfklçjasdklçfjklçsdaffafdas asdf */
 
-.showConfirmDelete{
+.showConfirmDelete {
   background-color: var(--background);
   position: absolute;
   display: flex;
@@ -252,7 +267,8 @@ body {
   height: 150px;
   box-shadow: #b4b4b4;
 }
-.confirmDelete{
+
+.confirmDelete {
   justify-content: center;
   align-items: center;
   margin: 10px;
@@ -262,7 +278,7 @@ body {
   border-radius: 3px;
 }
 
-.confirmDeleteButton{
+.confirmDeleteButton {
   width: 60px;
   height: 30px;
   border-radius: 3px;
@@ -270,11 +286,11 @@ body {
   color: var(--noteContentFont);
 }
 
-.confirmDeleteButton:hover{
+.confirmDeleteButton:hover {
   background-color: var(--deleteButtonHover);
 }
 
-.confirmDeleteButton:active{
+.confirmDeleteButton:active {
   background-color: var(--deleteButtonActive);
 }
 
