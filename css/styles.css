@@ -44,9 +44,7 @@ body {
 }
 
 .noteShowForm {
-  /* border: solid 1px rgb(30, 248, 1); */
   margin: 10px;
-  /* height: 6vh; */
   margin-top: 5vh;
   width: 50%;
   display: flex;
@@ -61,7 +59,6 @@ body {
   border: solid 2px gray;
   border-radius: 3px;
 }
-
 
 .noteForm>#noteTitle,
 .noteForm>#noteSubmitButton,
@@ -172,7 +169,6 @@ body {
   transform: translate(-50%, -50%);
   width: 500px;
   box-shadow: #b4b4b4;
-
 }
 
 .selectedNote {
@@ -254,8 +250,6 @@ body {
   background-color: var(--deleteButtonActive);
 }
 
-/* lkaçsdjfklçadsjfklçjasdklçfjklçsdaffafdas asdf */
-
 .showConfirmDelete {
   background-color: var(--background);
   position: absolute;
@@ -293,34 +287,6 @@ body {
 .confirmDeleteButton:active {
   background-color: var(--deleteButtonActive);
 }
-
-
-
-
-
-
-
-
-/* alkjgklçdsaf klçsda jfklç adsklçf jdasçklfjç */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media (max-width: 1500px) {
   .notes {
