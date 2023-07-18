@@ -5,11 +5,78 @@ const port = 3000;
 const { db, Note } = require("./database");
 const cors = require("cors");
 const bodyparser = require("body-parser");
+const User = require('../models/User.js')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 
 
 app.use(cors());
 app.use(bodyparser.json());
+
+
+//vai registrar um usuario novo
+app.post("/auth/register", async (req, res) => {
+  const { userName, userEmail, userPassword } = req.body;
+  const userExists = await User.findOne({ userEmail: userEmail });
+  if (userExists) {
+    return res.status(422).json({ msg: "Este e-mail está registrado" });
+  }
+  const salt = await bcrypt.genSalt(12);
+  const passwordHash = await bcrypt.hash(userPassword, salt);
+
+  const user = new User({
+    userName: userName,
+    userEmail: userEmail,
+    userPassword: passwordHash
+  });
+
+  try {
+    await user.save();
+    res.status(200).json({ msg: "Usuario criado" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "USUARIO NÃO CRIADO" });
+  }
+});
+
+
+//login do usuario no sistema 
+app.post('/auth/login', async (req,res) => {
+  const {userEmail, userPassword} = req.body;
+  const user = await User.findOne({userEmail: userEmail})
+
+  const verifyPassword = await bcrypt.compare(userPassword, user.userPassword)
+  if(!verifyPassword){
+    return res.status(422).json({msg:"Senha incorreta"})
+  }
+
+  try {
+    const secret = process.env.SECRET;
+    const token = jwt.sign(
+      {
+        id: user._id
+      },
+      secret
+    )
+    res.status(200).json({msg:'Autenticação realizada com sucesso', token})
+  } catch (err) {
+    res.status(500).json({msg: 'Houve um erro no servidor', err})
+  }
+})
+
+
+//vai buscar usuarios
+app.get('/users', async (req,res) => {
+  try {
+    const users = await User.find()
+    res.status(200).json({users})
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "USUARIO NÃO ENCONTRADO" });
+  }
+})
+
 
 app.get("/notekeep", (req, res) => {
   Note.find()
