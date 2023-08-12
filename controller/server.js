@@ -45,7 +45,6 @@ app.post("/auth/register", async (req, res) => {
 app.post('/auth/login', async (req,res) => {
   const {userEmail, userPassword} = req.body;
   const user = await User.findOne({userEmail: userEmail})
-
   const verifyPassword = await bcrypt.compare(userPassword, user.userPassword)
   if(!verifyPassword){
     return res.status(422).json({msg:"Senha incorreta"})
@@ -59,7 +58,7 @@ app.post('/auth/login', async (req,res) => {
       },
       secret
     )
-    res.status(200).json({msg:'Autenticação realizada com sucesso', token})
+    res.status(200).json({msg:'Autenticação realizada com sucesso', token, userEmail})
   } catch (err) {
     res.status(500).json({msg: 'Houve um erro no servidor', err})
   }
@@ -67,7 +66,7 @@ app.post('/auth/login', async (req,res) => {
 
 
 //vai buscar usuarios
-app.get('/users', async (req,res) => {
+app.get('/users', checkToken, async (req,res) => {
   try {
     const users = await User.find()
     res.status(200).json({users})
@@ -78,12 +77,27 @@ app.get('/users', async (req,res) => {
 })
 
 
-app.get("/notekeep", (req, res) => {
+app.get("/notekeep", checkToken, (req, res) => {
   Note.find()
     .then((notes) => res.send(notes))
     .catch((err) => res.status(500).send(err));
 });
 
+
+function checkToken(req,res, next){
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]
+  if(!token){
+    return res.status(401).json({msg:'Não tem token!'})
+  }
+  try {
+    const secret = process.env.SECRET
+    jwt.verify(token, secret)
+    next()
+  } catch (error) {
+    return res.status(400).json({msg: 'Token Invalido', authHeader})
+  }
+}
 app.get("/notekeep/:id", (req, res) => {
   const id = req.params.id;
   Note.findById(id)

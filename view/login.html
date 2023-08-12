@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatgeible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <script src="./../controller/login.js" type="text/javascript" defer></script>
+
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <title>Login page</title>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="#home">Notekeep</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+  </div>
+
+  <div class="main">
+    <form method="post" class="formLoginContainer">
+      <div class="imgContainer">
+        <img src="./../favicon.png" alt="note image" class="logo">
+      </div>
+      <div class="errLogin">
+        <span class="loginErrMsg">E-mail ou senha errados</span>
+      </div>
+      <label for="userEmail" class="labelField">E-mail</label>
+      <input type="text" placeholder="Insira o e-mail" name="userEmail" required>
+      <label for="userPassword" class="labelField">Senha</label>
+      <input type="password" placeholder="Insira a senha" name="userPassword">
+      <button type="submit" class="submitLoginButton">Login</button>
+    </form>
+
+  </div>
+
+
+
+</body>
+
+</html>

@@ -1,16 +1,27 @@
 const url = "http://localhost:3000/notekeep";
 
-fetch(url)
-  .then((res) => res.json())
+const userData = JSON.parse(sessionStorage.getItem("userData"));
+fetch(url, {
+  method: "GET",
+  headers: {
+    Authorization: `Bearer ${userData.token}`,
+  },
+})
+.then((res) => res.json())
   .then((data) => {
-    const notes = document.getElementsByClassName("notes")[0];
-    data.forEach((element) => {
-      const note = document.createElement("div");
-      note.classList.add("note");
-      const id = element._id;
-      note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
-      notes.appendChild(note);
-    });
+    if (userData.token) {
+      console.log(userData);
+      const notes = document.getElementsByClassName("notes")[0];
+      data.forEach((element) => {
+        const note = document.createElement("div");
+        note.classList.add("note");
+        const id = element._id;
+        note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
+        notes.appendChild(note);
+      });
+    }else{
+      
+    }
   })
   .catch((err) => console.log(`Caiu no catch ${err}`));
 
@@ -123,3 +134,4 @@ function deleteNote(id) {
     .then(() => location.reload())
     .catch((err) => console.log);
 }
+
