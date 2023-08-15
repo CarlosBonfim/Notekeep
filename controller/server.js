@@ -16,29 +16,30 @@ app.use(bodyparser.json());
 
 
 //vai registrar um usuario novo
-app.post("/auth/register", async (req, res) => {
-  const { userName, userEmail, userPassword } = req.body;
-  const userExists = await User.findOne({ userEmail: userEmail });
-  if (userExists) {
-    return res.status(422).json({ msg: "Este e-mail está registrado" });
-  }
-  const salt = await bcrypt.genSalt(12);
-  const passwordHash = await bcrypt.hash(userPassword, salt);
 
-  const user = new User({
-    userName: userName,
-    userEmail: userEmail,
-    userPassword: passwordHash
-  });
+// app.post("/auth/register", async (req, res) => {
+//   const { userName, userEmail, userPassword } = req.body;
+//   const userExists = await User.findOne({ userEmail: userEmail });
+//   if (userExists) {
+//     return res.status(422).json({ msg: "Este e-mail está registrado" });
+//   }
+//   const salt = await bcrypt.genSalt(12);
+//   const passwordHash = await bcrypt.hash(userPassword, salt);
 
-  try {
-    await user.save();
-    res.status(200).json({ msg: "Usuario criado" });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: "USUARIO NÃO CRIADO" });
-  }
-});
+//   const user = new User({
+//     userName: userName,
+//     userEmail: userEmail,
+//     userPassword: passwordHash
+//   });
+
+//   try {
+//     await user.save();
+//     res.status(200).json({ msg: "Usuario criado" });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ msg: "USUARIO NÃO CRIADO" });
+//   }
+// });
 
 
 //login do usuario no sistema 
@@ -49,6 +50,7 @@ app.post('/auth/login', async (req,res) => {
   if(!verifyPassword){
     return res.status(422).json({msg:"Senha incorreta"})
   }
+  
 
   try {
     const secret = process.env.SECRET;
@@ -56,7 +58,11 @@ app.post('/auth/login', async (req,res) => {
       {
         id: user._id
       },
-      secret
+      secret,
+      {
+        // expiresIn: 15 * 60
+        expiresIn: 10
+      }
     )
     res.status(200).json({msg:'Autenticação realizada com sucesso', token, userEmail})
   } catch (err) {
