@@ -1,29 +1,42 @@
 const url = "http://localhost:3000/notekeep";
 
-const userData = JSON.parse(sessionStorage.getItem("userData"));
-fetch(url, {
-  method: "GET",
-  headers: {
-    Authorization: `Bearer ${userData.token}`,
-  },
-})
-.then((res) => res.json())
-  .then((data) => {
-    if (userData.token) {
-      console.log(userData);
-      const notes = document.getElementsByClassName("notes")[0];
-      data.forEach((element) => {
-        const note = document.createElement("div");
-        note.classList.add("note");
-        const id = element._id;
-        note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
-        notes.appendChild(note);
-      });
-    }else{
-      
-    }
+(function () {
+  const userDataString = sessionStorage.getItem("userData");
+  const userData = userDataString ? JSON.parse(userDataString) : window.location.href = 'login.html'
+  fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${userData.token}`,
+    },
   })
-  .catch((err) => console.log(`Caiu no catch ${err}`));
+    // .then((res) => res.json())
+    .then(res => {
+      if(!res.ok){
+        sessionStorage.removeItem('userData')
+        window.location.href = "login.html";
+      }
+      return res.json()
+    })
+    .then((data) => {
+      if (!userData.token) {
+        window.location.href = "login.html";
+      }
+      else if(userData.token) {
+        console.log(userData);
+        const notes = document.getElementsByClassName("notes")[0];
+        data.forEach((element) => {
+          const note = document.createElement("div");
+          note.classList.add("note");
+          const id = element._id;
+          note.innerHTML = `<div class="noteContent" onclick="selectNote('${id}')" ><h3 class="noteTitle">${element.noteTitle}</h3><p class="nodeText">${element.noteText}</p></div>`;
+          notes.appendChild(note);
+        });
+      } else {
+      }
+    })
+    .catch((err) => console.log(`Caiu no catch ${err}`));
+})();
+
 
 function submitFormNote() {
   console.log("entrou no submit form note");
