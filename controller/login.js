@@ -15,7 +15,15 @@ formLogin.addEventListener('submit', (event) => {
       "Content-Type": "application/json"
     },
   })
-  .then(res => res.json())
+  .then(res => {
+    if(res.status === 422){
+      console.log('Deu erro 422')
+      const loginFailureMsg = document.querySelector('.errLogin')
+      loginFailureMsg.classList.remove('errHidden')
+    }else{
+      return res.json()
+    }
+  })
   .then((json) => {
     console.log(json)
     const userData = {
@@ -23,8 +31,11 @@ formLogin.addEventListener('submit', (event) => {
       token: json.token
     }
     sessionStorage.setItem('userData', JSON.stringify(userData))
+    window.location.href = 'index.html'
+
   }).catch(err => {
-    console.log(err)
+    console.log('Hovue um erro', err)
+
   })
 })
 
