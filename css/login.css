@@ -64,3 +64,18 @@ input[type=password] {
 img.logo {
   width: 40%;
 }
+
+.errLogin{
+  background-color: red;
+  border-radius: 4px;
+  padding: 5px;
+}
+.errHidden{
+  display: none;
+}
+.loginErrMsg{
+  font-size: 0.8em;
+  display: flex;
+  justify-content: center;
+}
+
